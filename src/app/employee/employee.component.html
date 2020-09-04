@@ -1,0 +1,43 @@
+<div class="row no-gutters">
+    <div class="col-sm-2 col-md-2">
+
+        <div class="card" style="width: 18rem;">
+            <img src="../../assets/svg/user.svg" class="card-img-top padding-20" alt="profile">
+            <div class="card-body">
+              <h5 class="card-title">Jose Perez</h5>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Add Vacation</a>
+              <a href="#" class="card-link">Edit Profile</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-10 col-md-10 padding-20">
+
+        <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">occupation</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+              <tr *ngFor="let item of employees | async">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.lastname}}</td>
+                <td>{{item.occupation}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>

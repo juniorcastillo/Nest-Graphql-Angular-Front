@@ -1,0 +1,24 @@
+
+
+<div class="container-login">
+
+    <div class="shadow-sm p-3 mb-5 bg-white rounded col-sm-3 col-md-3">
+    
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User name</label>
+              <input type="text" [(ngModel)]="username"  required name="username" class="form-control" id="exampleInputEmail1" aria-describedby="user name">
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" [(ngModel)]="pwd" name="pwd" class="form-control" id="exampleInputPassword1" required> 
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input"  id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" (click) ='getUserValidated()' class="btn btn-primary" >Submit</button>
+          </form>
+    </div>
+</div>
