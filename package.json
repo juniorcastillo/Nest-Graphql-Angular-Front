@@ -24,7 +24,8 @@
     "zone.js": "~0.10.2",
     "apollo-angular": "^2.0.4",
     "@apollo/client": "^3.0.0",
-    "graphql": "^15.0.0"
+    "graphql": "^15.0.0",
+    "jwt-decode":"^2.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.4",

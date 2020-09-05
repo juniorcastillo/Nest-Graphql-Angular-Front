@@ -1,43 +1,197 @@
 <div class="row no-gutters">
-    <div class="col-sm-2 col-md-2">
+  <div>
 
-        <div class="card" style="width: 18rem;">
-            <img src="../../assets/svg/user.svg" class="card-img-top padding-20" alt="profile">
-            <div class="card-body">
-              <h5 class="card-title">Jose Perez</h5>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Add Vacation</a>
-              <a href="#" class="card-link">Edit Profile</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-10 col-md-10 padding-20">
+    <div class="card" style="width: 18rem;">
+      <img src="../../assets/svg/user.svg" class="card-img-top padding-20" alt="profile">
+      <div class="card-body">
+        <h5 class="card-title">{{userData.username}}</h5>
+        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{userData.name}} {{userData.lastname}}</li>
 
-        <table class="table ">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">occupation</th>
-              </tr>
-            </thead>
-            <tbody>
-             
-              <tr *ngFor="let item of employees | async">
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.lastname}}</td>
-                <td>{{item.occupation}}</td>
-              </tr>
-            </tbody>
-          </table>
+        <li class="list-group-item">{{userData.departament}} </li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Add Vacation</a>
+        <a href="#" class="card-link">Edit Profile</a>
+      </div>
     </div>
   </div>
+  <div class="col-ms-4 col-md-9 padding-20">
+
+    <div class="aling-right-action-table">
+      <a href="#" data-toggle="modal" data-target="#staticBackdrop">
+        <!--  <button type="button" >
+            Launch static backdrop modal
+          </button> -->
+
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path fill-rule="evenodd"
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg> add
+      </a>
+    </div>
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">occupation</th>
+          <th scope="col"> actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of employees | async">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.lastname}}</td>
+          <td>{{item.occupation}}</td>
+          <td>
+            <div class="actions-table">
+              <a href="#" data-toggle="modal" (click)="openEditModal(item)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+              </svg>
+              </a>
+            </div>
+
+
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal Edit Modal -->
+<div class="modal fade " id="staticEditEmploye" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticEditEmployeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticEditEmployeLabel">Edit Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" id="EditAlertEmp" style="display: none;" role="alert">
+          All fields are required!
+        </div>
+        <form #formEditEmployee>
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="hidden" class="form-control" name="id"  [(ngModel)]="employeeSeleted.id" >
+              <input type="text" class="form-control" name="name" [(ngModel)]="employeeSeleted.name" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="lastname" [(ngModel)]="employeeSeleted.lastname" placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="number" class="form-control" name="age"  [(ngModel)]="employeeSeleted.age" placeholder="Age">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="occupation"  [(ngModel)]="employeeSeleted.occupation" placeholder="Occupation">
+            </div>
+          </div>
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="text" class="form-control" name="address"  [(ngModel)]="employeeSeleted.address" placeholder="Address">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="editEmployee(formEditEmployee)">Submit</button>
+      </div>"
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal Create Modal -->
+<div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Create Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" id="createAlertEmp" style="display: none;" role="alert">
+          All fields are required!
+        </div>
+        <form #formCreateEmployee>
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="text" class="form-control" name="name" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="lastname" placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="number" class="form-control" name="age" placeholder="Age">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="occupation" placeholder="Occupation">
+            </div>
+          </div>
+          <div class="row paddingbt-20">
+            <div class="col">
+              <input type="text" class="form-control" name="address" placeholder="Address">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addEmployee(formCreateEmployee)">Submit</button>
+      </div>"
+    </div>
+  </div>
+</div>
+<!-- 
+  <div class="modal-dialog modal-lg">
+   
+
+  </div> -->
