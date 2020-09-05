@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { gql, Apollo } from 'apollo-angular';
 import { Employee } from 'src/app/models/employee';
 import { map } from 'rxjs/operators';
-
+declare let Swal: any;
 @Injectable({
   providedIn: 'root',
 })
@@ -39,7 +39,7 @@ export class EmployeeService {
   editEmployee(payload: Employee) {
     const req = `name: "${payload.name}", lastname: "${payload.lastname}" , age: ${payload.age} 
     , occupation: "${payload.occupation}" , address: "${payload.address}"`;
-    console.log("UPDATE_EMPLOYEE req:" , req)
+    console.log('UPDATE_EMPLOYEE req:', req);
     const UPDATE_EMPLOYEE = gql`
     mutation{
       updateemployee(id: "${payload.id}", input:{${req}} ) {
@@ -51,13 +51,48 @@ export class EmployeeService {
           id
         } 
     }`;
-  console.log("UPDATE_EMPLOYEE " , UPDATE_EMPLOYEE)
+    console.log('UPDATE_EMPLOYEE ', UPDATE_EMPLOYEE);
     this.apollo
       .mutate({
         mutation: UPDATE_EMPLOYEE,
       })
       .subscribe((res) => {
         location.reload();
+      });
+  }
+
+  deleteEmploye(id: string) {
+
+    const DELETE_EMPLOYEE = gql`
+    mutation{
+      deleteemployee(id: "${id}") {
+          name
+          lastname
+          age
+          occupation
+          address
+          id
+        } 
+    }`;
+ 
+    this.apollo
+      .mutate({
+        mutation: DELETE_EMPLOYEE,
+      })
+      .subscribe((res) => {
+    
+     
+          if (res) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            ).then(res=>{
+              location.reload();
+
+            })
+          }
+       
       });
   }
 }

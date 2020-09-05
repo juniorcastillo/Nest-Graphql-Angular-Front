@@ -8,7 +8,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { User } from '../models/user';
 import { EmployeeService } from '../services/employee/employee.service';
 import { Employee } from '../models/employee';
-declare let $ :any;
+declare let $, Swal :any;
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -71,5 +72,24 @@ export class EmployeeComponent implements OnInit {
   editEmployee(data:Employee){
     console.log( "editEmployee: ",this.employeeSeleted )
     this.employeeService.editEmployee(this.employeeSeleted);
+  }
+
+
+  deleteEmployee(id: string){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      console.log(result)
+      if (result.value) {
+        this.employeeService.deleteEmploye(id);
+       
+      }
+    })
   }
 }
