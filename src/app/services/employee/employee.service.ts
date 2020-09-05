@@ -85,7 +85,7 @@ export class EmployeeService {
           if (res) {
             Swal.fire(
               'Deleted!',
-              'Your file has been deleted.',
+              'has been deleted.',
               'success'
             ).then(res=>{
               location.reload();

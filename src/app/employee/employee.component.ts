@@ -27,6 +27,8 @@ export class EmployeeComponent implements OnInit {
     private employeeService: EmployeeService
   ) {}
   @ViewChild('content') contentModal: any;
+
+  
   ngOnInit(): void {
    
     this.userData = this.authService.getCurrentUser();
@@ -62,19 +64,28 @@ export class EmployeeComponent implements OnInit {
       this.employeeService.createEmployee(payload);
     }
   }
-
+   /**
+    * openEditModal
+    * @param data 
+    */
   openEditModal(data:Employee){
     console.log("openEditModal " , data)
     $('#staticEditEmploye').modal();
     this.employeeSeleted = {...data};
   }
-
+  /**
+   * editEmployee
+   * @param data 
+   */
   editEmployee(data:Employee){
     console.log( "editEmployee: ",this.employeeSeleted )
     this.employeeService.editEmployee(this.employeeSeleted);
   }
 
-
+  /**
+   * deleteEmployee
+   * @param id 
+   */
   deleteEmployee(id: string){
     Swal.fire({
       title: 'Are you sure?',
@@ -92,4 +103,13 @@ export class EmployeeComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * logout
+   * 
+   */
+ logout(){
+  sessionStorage.removeItem("token");
+  location.reload();
+}
 }
